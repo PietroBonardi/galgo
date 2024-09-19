@@ -1,0 +1,5 @@
+setup.py
+genealgo.egg-info/PKG-INFO
+genealgo.egg-info/SOURCES.txt
+genealgo.egg-info/dependency_links.txt
+genealgo.egg-info/top_level.txt
