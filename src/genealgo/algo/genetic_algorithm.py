@@ -115,6 +115,6 @@ class GeneticAlgo:
 
             # Early stop condition
             if best_genes[-1][1] == 1:
-                return ["".join(ind) for ind, _ in best_genes]
+                return [ind for ind, _ in best_genes]
 
-        return ["".join(ind) for ind, _ in best_genes]
+        return [ind for ind, _ in best_genes]
