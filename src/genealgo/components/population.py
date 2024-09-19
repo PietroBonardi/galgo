@@ -1,33 +1,43 @@
-from typing import List, Tuple
-import random
-import string
+from typing import List
+from abc import ABC, abstractmethod
 
 
-class StringPopulation:
+class Population(ABC):
+    """
+    Represents a population of individuals.
 
-    def __init__(
-        self,
-        pop_size: int = 10,
-        individual_size: Tuple[int, int] = (1, 10),
-    ) -> None:
+    Attributes:
+        _pop_size (int): The size of the population.
+    """
+
+    def __init__(self, pop_size: int) -> None:
+        """
+        Initialize a Population with the given size.
+
+        Args:
+            pop_size (int): The size of the population.
+        """
         self._pop_size = pop_size
-        self._ind_lb_size, self._ind_up_size = self.set_individual_size(individual_size)
 
-    def set_individual_size(self, individual_size: Tuple[int, int]) -> Tuple[int, int]:
-        lb, up = individual_size
-        assert (
-            lb > 0 and up > 0 and lb < up + 1
-        ), f"😵‍💫 Invalid size range: ({lb}, {up})"
+    def generate(self) -> List[str]:
+        """
+        Generate a population of individuals.
 
-        return lb, up + 1
+        Returns:
+            List[str]: A list of generated individuals.
 
-    def generate_population(
-        self,
-    ) -> List[str]:
+        Raises:
+            AssertionError: If the population size is not greater than 0.
+        """
+        assert self._pop_size > 0, "Population size has to be greater than 0"
         return [self.generate_individual() for _ in range(self._pop_size)]
 
-    def generate_individual(self) -> str:
-        return "".join(
-            random.choice(string.ascii_lowercase)
-            for _ in range(random.choice(range(self._ind_lb_size, self._ind_up_size)))
-        )
+    @abstractmethod
+    def generate_individual(self):
+        """
+        Generate an individual.
+
+        Raises:
+            NotImplementedError: This method should be overridden by subclasses.
+        """
+        raise NotImplementedError
