@@ -13,7 +13,7 @@ To demonstrate the functionality of Galgo, an `experiments` folder has been incl
 
 ### Key Components
 
-To use the genetic algorithm, you need to define the following components by wrapping these classes:
+To use the genetic algorithm, you need to define the following components by extending these classes:
 
 - **Population Class**: Manages the collection of individuals in the genetic algorithm.
 - **Fitness Class**: Evaluates the fitness of individuals based on a specific criterion.
