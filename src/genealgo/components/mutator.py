@@ -109,11 +109,8 @@ class SwapMutator(Mutator):
             # Ensure there are at least two genes to swap
             if len(offspring) < 2:
                 return offspring
-
-            # Select two random indices to swap
+            # swap the genes 
             idx1, idx2 = random.sample(range(len(offspring)), 2)
-
-            # Swap the genes at the selected indices
             offspring[idx1], offspring[idx2] = offspring[idx2], offspring[idx1]
 
         return offspring
