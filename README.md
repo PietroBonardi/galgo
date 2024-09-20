@@ -29,7 +29,6 @@ To use the genetic algorithm, you need to define the following components by ext
 
     .
     ├──── examples/
-    │       ├── main.ipynb
     │       └── string_vanilla.py
     ├── src/
     │   ├── genealgo/
