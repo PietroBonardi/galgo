@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name="genetic",
+    name="genealgo",
     version="1.0.0",
     description="A Genetic Algorithm",
     author="Pietro B.",
