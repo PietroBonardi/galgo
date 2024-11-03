@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Any
 from abc import ABC, abstractmethod
 
 
@@ -19,7 +19,7 @@ class Population(ABC):
         """
         self._pop_size = pop_size
 
-    def generate(self) -> List[str]:
+    def generate(self) -> List[Any]:
         """
         Generate a population of individuals.
 

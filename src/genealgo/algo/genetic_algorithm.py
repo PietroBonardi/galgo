@@ -68,9 +68,7 @@ class GeneticAlgo:
         """
         return self.parent_selector.select(population=population, fitnesses=fitnesses)
 
-    def best_gene(
-        self, population: List[Any], fitnesses: List[float]
-    ) -> Tuple[Any, float]:
+    def best_gene(self, population: List[Any]) -> Tuple[Any, float]:
         """
         Find the best individual in the population based on fitness.
 
@@ -111,7 +109,7 @@ class GeneticAlgo:
                 new_pop.extend([offspringX, offspringY])
 
             population = new_pop
-            best_genes.append(self.best_gene(population, fitnesses))
+            best_genes.append(self.best_gene(population))
 
             # Early stop condition
             if best_genes[-1][1] == 1:

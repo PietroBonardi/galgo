@@ -60,34 +60,70 @@ class RandomResettingMutator(Mutator):
     A mutator that resets genes to random values within a specified range.
     """
 
-    def __init__(self, mutation_rate: float, characteristic: List[Any]):
+    def __init__(self, mutation_rate: float, characteristics: List[Any]):
         """
         Initialize the RandomResettingMutator with a mutation rate and value range.
 
         Args:
             mutation_rate (float): The probability of mutation for each gene.
-            characteristic (List[Any]): The range of values for resetting genes.
+            characteristics (List[Any]): The range of values for resetting genes.
         """
         super().__init__(mutation_rate)
-        self.characteristic = characteristic
+        self.characteristics = characteristics
 
-    def mutate(self, offspring: List[float]) -> List[float]:
+    def mutate(self, offspring: List[Any]) -> List[Any]:
         """
         Mutate the offspring by resetting genes to random values within the specified range.
 
         Args:
-            offspring (List[float]): The offspring to be mutated.
+            offspring (List[Any]): The offspring to be mutated.
 
         Returns:
-            List[float]: The mutated offspring.
+            List[Any]: The mutated offspring.
         """
-        mutation = []
-        for gene in offspring:
+        for i in range(len(offspring)):
             if random.random() < self.get_mutation_rate():
-                mutation.append(random.choice(self.characteristic))
-            else:
-                mutation.append(gene)
-        return mutation
+                offspring[i] = random.choice(self.characteristics)
+
+        return offspring.copy()
+
+
+class RandomAdderMutator(Mutator):
+    """
+    A mutator that add random genes within a specified range.
+    """
+
+    def __init__(
+        self, mutation_rate: float, characteristic: List[Any], max_genes: int = 5
+    ):
+        """
+        Initialize the RandomResettingMutator with a mutation rate and value range.
+
+        Args:
+            mutation_rate (float): The probability of mutation.
+            characteristic (List[Any]): The range of values for resetting genes.
+        """
+        super().__init__(mutation_rate)
+        self.max_genes = max_genes
+        self.characteristic = characteristic
+
+    def mutate(self, offspring: List[Any]) -> List[Any]:
+        """
+        Mutate the offspring by resetting genes to random values within the specified range.
+
+        Args:
+            offspring (List[Any]): The offspring to be mutated.
+
+        Returns:
+            List[Any]: The mutated offspring.
+        """
+        genes_to_add = random.randint(1, self.max_genes)
+
+        for _ in range(genes_to_add):
+            if random.random() < self.get_mutation_rate():
+                offspring.append(random.choice(self.characteristic))
+
+        return offspring.copy()
 
 
 class SwapMutator(Mutator):
@@ -109,7 +145,7 @@ class SwapMutator(Mutator):
             # Ensure there are at least two genes to swap
             if len(offspring) < 2:
                 return offspring
-            # swap the genes 
+            # swap the genes
             idx1, idx2 = random.sample(range(len(offspring)), 2)
             offspring[idx1], offspring[idx2] = offspring[idx2], offspring[idx1]
 

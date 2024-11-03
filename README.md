@@ -4,7 +4,7 @@
 ![Python 3.12](https://img.shields.io/badge/python-3.12-blue)
 
 ### Overview
-
+![Logo](./media/galgo-logo.png)
 GALGO is an implementation of the genetic algorithm, designed for flexibility and ease of use.
 
 ### Experiments
