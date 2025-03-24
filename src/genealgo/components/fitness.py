@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-
+from typing import Any, List
 
 class Fitness(ABC):
     """
@@ -7,14 +7,14 @@ class Fitness(ABC):
     """
 
     @abstractmethod
-    def evaluate(self, individual) -> float:
+    def evaluate(self, individual:List[Any]) -> float:
         """
         Evaluate the fitness of an individual.
 
         Parameters:
-        individual (Individual): The individual to evaluate.
+            individual (Individual): The individual to evaluate.
 
         Returns:
-        float: The fitness value of the individual.
+            float: The fitness value of the individual.
         """
         raise NotImplementedError

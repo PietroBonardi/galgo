@@ -1,8 +1,8 @@
 from typing import Any, List, Tuple
 from genealgo.components.fitness import Fitness
-from genealgo.components.parents import ParentSelector
-from genealgo.components.mutator import Mutator
-from genealgo.components.crossover import CrossOver
+from genealgo.components.parent.roulette_wheel import ParentSelector
+from genealgo.components.mutator.base import Mutator
+from genealgo.components.crossover.base import CrossOver
 
 
 class GeneticAlgo:
@@ -39,7 +39,7 @@ class GeneticAlgo:
         self.parent_selector = parent_selector
         self.crossover = crossover
         self.mutator = mutator
-        self.generation = generations
+        self.generations = generations
 
     def compute_fitness(self, population: List[Any]) -> List[float]:
         """
@@ -94,7 +94,7 @@ class GeneticAlgo:
         """
         best_genes = []
 
-        for _ in range(self.generation):
+        for _ in range(self.generations):
             fitnesses = self.compute_fitness(population)
             new_pop = []
             for _ in range(len(population) // 2):

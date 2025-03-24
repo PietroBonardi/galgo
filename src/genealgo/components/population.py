@@ -19,6 +19,16 @@ class Population(ABC):
         """
         self._pop_size = pop_size
 
+    @abstractmethod
+    def generate_individual(self):
+        """
+        Generate an individual.
+
+        Raises:
+            NotImplementedError: This method should be overridden by subclasses.
+        """
+        raise NotImplementedError
+
     def generate(self) -> List[Any]:
         """
         Generate a population of individuals.
@@ -31,13 +41,3 @@ class Population(ABC):
         """
         assert self._pop_size > 0, "Population size has to be greater than 0"
         return [self.generate_individual() for _ in range(self._pop_size)]
-
-    @abstractmethod
-    def generate_individual(self):
-        """
-        Generate an individual.
-
-        Raises:
-            NotImplementedError: This method should be overridden by subclasses.
-        """
-        raise NotImplementedError
